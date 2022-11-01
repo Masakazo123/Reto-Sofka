@@ -9,8 +9,8 @@ public abstract class Nave implements Serializable{
     private String pais;
     private boolean condicionesOptimas;
     
-    public abstract String prepararParaLanzamiento();
-    
+    public abstract String realizarMantenimiento();
+    public abstract String tipoCombustible();
 
     public Nave(String pais, String modelo, boolean condicionesOptimas) {
         this.pais = pais;

@@ -91,6 +91,7 @@ public class VentanaPrincipal extends javax.swing.JFrame implements ActionListen
         menuEliminar = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         menuPrepararLanzamiento = new javax.swing.JMenuItem();
+        menuCombustible = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -245,13 +246,21 @@ public class VentanaPrincipal extends javax.swing.JFrame implements ActionListen
             }
         });
 
-        menuPrepararLanzamiento.setText("Preparar Lanzamiento");
+        menuPrepararLanzamiento.setText("Realizar mantenimiento");
         menuPrepararLanzamiento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuPrepararLanzamientoActionPerformed(evt);
             }
         });
         jMenu3.add(menuPrepararLanzamiento);
+
+        menuCombustible.setText("Combustible a usar");
+        menuCombustible.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuCombustibleActionPerformed(evt);
+            }
+        });
+        jMenu3.add(menuCombustible);
 
         jMenuBar1.add(jMenu3);
 
@@ -399,7 +408,7 @@ public class VentanaPrincipal extends javax.swing.JFrame implements ActionListen
     }//GEN-LAST:event_formWindowClosing
 
     private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
-        actualizar();
+        ordenarTabla();
     }//GEN-LAST:event_txtBuscarActionPerformed
 
     private void menuBorrarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuBorrarDatosActionPerformed
@@ -452,7 +461,7 @@ public class VentanaPrincipal extends javax.swing.JFrame implements ActionListen
                 if(nave.getModelo().equals(tableModel.getValueAt(filaOriginal, 1))){
                     JFrame jf=new JFrame();
                     jf.setAlwaysOnTop(true);
-                    JOptionPane.showMessageDialog(jf,nave.prepararParaLanzamiento());
+                    JOptionPane.showMessageDialog(jf,nave.realizarMantenimiento());
                 }
             }
             
@@ -462,6 +471,28 @@ public class VentanaPrincipal extends javax.swing.JFrame implements ActionListen
             JOptionPane.showMessageDialog(jf,"Seleccione una nave de la lista");
         }
     }//GEN-LAST:event_menuPrepararLanzamientoActionPerformed
+
+    private void menuCombustibleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCombustibleActionPerformed
+        int fila = tabla.getSelectedRow();
+        if(fila !=-1){
+        int filaOriginal = tabla.convertRowIndexToModel(fila);
+            TableModel tableModel = tabla.getModel();
+            tableModel.getValueAt(filaOriginal, 1);
+
+            for(Nave nave : modelo.getListaNaves()){
+                if(nave.getModelo().equals(tableModel.getValueAt(filaOriginal, 1))){
+                    JFrame jf=new JFrame();
+                    jf.setAlwaysOnTop(true);
+                    JOptionPane.showMessageDialog(jf,nave.tipoCombustible());
+                }
+            }
+            
+        }else{
+            JFrame jf=new JFrame();
+            jf.setAlwaysOnTop(true);
+            JOptionPane.showMessageDialog(jf,"Seleccione una nave de la lista");
+        }
+    }//GEN-LAST:event_menuCombustibleActionPerformed
 
 
     
@@ -487,6 +518,7 @@ public class VentanaPrincipal extends javax.swing.JFrame implements ActionListen
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JMenuItem menuBorrarDatos;
+    private javax.swing.JMenuItem menuCombustible;
     private javax.swing.JMenuItem menuEliminar;
     private javax.swing.JMenuItem menuPrepararLanzamiento;
     private javax.swing.JMenuItem menuResetearDatos;
@@ -540,21 +572,18 @@ public class VentanaPrincipal extends javax.swing.JFrame implements ActionListen
             public void insertUpdate(DocumentEvent e) {
                 tableModel.fireTableDataChanged();
                 resetear();
-                actualizar();
             }
 
             @Override
             public void removeUpdate(DocumentEvent e) {
                 tableModel.fireTableDataChanged();
                 resetear();
-                actualizar();
             }
 
             @Override
             public void changedUpdate(DocumentEvent e) {
                 tableModel.fireTableDataChanged();
                 resetear();
-                actualizar();
             }
             
         });
@@ -593,36 +622,6 @@ public class VentanaPrincipal extends javax.swing.JFrame implements ActionListen
         }
         
     }
-    
-//    public void filtrar(){
-//        DefaultTableModel tableModel = (DefaultTableModel) tabla.getModel();
-//        TableRowSorter sorter = new TableRowSorter(tableModel);
-//        tabla.setRowSorter(sorter);
-//        
-//        String filtro = null;
-//        
-//        if(radioLanzadera.isSelected()){
-//            filtro = "Lanzadera";
-//        }else if(radioNoTripulada.isSelected()){
-//            filtro = "No tripulada";
-//        }else if(radioTripulada.isSelected()){
-//            filtro = "Tripulada";
-//        }else if(radioRusia.isSelected()){
-//            filtro = "Rusia";
-//        }else if(radioEEUU.isSelected()){
-//            filtro = "EEUU";
-//        }else if(radioChina.isSelected()){
-//            filtro = "China";
-//        }else if (radioNinguno.isSelected()){
-//            filtro = null;
-//        }
-//        
-//        if(filtro!=null){
-//            sorter.setRowFilter(RowFilter.regexFilter(filtro));
-//        }else{
-//            tabla.setModel(tableModel);
-//        }
-//    }
     
 
     @Override

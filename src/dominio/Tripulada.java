@@ -46,8 +46,13 @@ public class Tripulada extends Nave implements Serializable{
     }
 
     @Override
-    public String prepararParaLanzamiento() {
+    public String realizarMantenimiento() {
         return "Cargando equipo de mantenimiento...";
+    }
+
+    @Override
+    public String tipoCombustible() {
+        return "Químico sólido";
     }
 
 }

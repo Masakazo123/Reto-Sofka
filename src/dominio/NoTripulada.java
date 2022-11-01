@@ -46,8 +46,13 @@ public class NoTripulada extends Nave implements Serializable{
     }
 
     @Override
-    public String prepararParaLanzamiento() {
+    public String realizarMantenimiento() {
         return "Limpiando paneles solares...";
+    }
+
+    @Override
+    public String tipoCombustible() {
+        return "Óxido nítrico";
     }
 
     

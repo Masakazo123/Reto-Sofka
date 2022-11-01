@@ -57,9 +57,15 @@ public class Lanzadera extends Nave implements Serializable{
     }
 
     @Override
-    public String prepararParaLanzamiento() {
+    public String realizarMantenimiento() {
         return "Llenando tanques de combustible...";
     }
+
+    @Override
+    public String tipoCombustible() {
+        return "Combustible químico sólido";
+    }
+
     
     
     

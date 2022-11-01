@@ -72,10 +72,18 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="menuPrepararLanzamiento">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Preparar Lanzamiento"/>
+                <Property name="text" type="java.lang.String" value="Realizar mantenimiento"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuPrepararLanzamientoActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="menuCombustible">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Combustible a usar"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuCombustibleActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>

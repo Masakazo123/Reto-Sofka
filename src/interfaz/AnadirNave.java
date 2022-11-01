@@ -709,6 +709,10 @@ public class AnadirNave extends javax.swing.JFrame {
 
             if(radioRusia.isSelected()){
                 pais = "Rusia";
+            }else if(radioChina.isSelected()){
+                pais = "China";
+            }else if(radioEEUU.isSelected()){
+                pais = "EEUU";
             }
 
             if(radioNo.isSelected()){
@@ -786,8 +790,13 @@ public class AnadirNave extends javax.swing.JFrame {
             if(this.cuerpoCeleste.length() == 0){
                 this.cuerpoCeleste = "Sin especificar";
             }
+            
             if(radioRusia1.isSelected()){
                 pais = "Rusia";
+            }else if(radioChina1.isSelected()){
+                pais = "China";
+            }else if(radioEEUU1.isSelected()){
+                pais = "EEUU";
             }
 
             if(radioNo1.isSelected()){
@@ -819,15 +828,15 @@ public class AnadirNave extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAnadir1ActionPerformed
 
     private void radioRusia2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioRusia2ActionPerformed
-        this.pais = "Rusia";
+
     }//GEN-LAST:event_radioRusia2ActionPerformed
 
     private void radioEEUU2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioEEUU2ActionPerformed
-        this.pais = "EEUU";
+
     }//GEN-LAST:event_radioEEUU2ActionPerformed
 
     private void radioChina2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioChina2ActionPerformed
-        this.pais = "China";
+
     }//GEN-LAST:event_radioChina2ActionPerformed
 
     private void radioNo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioNo2ActionPerformed
@@ -835,7 +844,7 @@ public class AnadirNave extends javax.swing.JFrame {
     }//GEN-LAST:event_radioNo2ActionPerformed
 
     private void radioSi2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioSi2ActionPerformed
-        this.condicionesOptimas = true;
+
     }//GEN-LAST:event_radioSi2ActionPerformed
 
     private void txtModelo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtModelo2ActionPerformed
@@ -858,6 +867,10 @@ public class AnadirNave extends javax.swing.JFrame {
 
             if(radioRusia2.isSelected()){
                 pais = "Rusia";
+            }else if(radioChina2.isSelected()){
+                pais = "China";
+            }else if(radioEEUU2.isSelected()){
+                pais = "EEUU";
             }
 
             if(radioNo2.isSelected()){
@@ -904,11 +917,11 @@ public class AnadirNave extends javax.swing.JFrame {
     }//GEN-LAST:event_radioNoActionPerformed
 
     private void radioChinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioChinaActionPerformed
-        pais = "China";
+
     }//GEN-LAST:event_radioChinaActionPerformed
 
     private void radioEEUUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioEEUUActionPerformed
-        pais = "EEUU";
+
     }//GEN-LAST:event_radioEEUUActionPerformed
 
     private void radioRusiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioRusiaActionPerformed
