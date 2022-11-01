@@ -335,7 +335,7 @@
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
           <ComponentRef name="btnGroup"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="No tripulable"/>
+        <Property name="text" type="java.lang.String" value="No tripulada"/>
         <Property name="actionCommand" type="java.lang.String" value=""/>
       </Properties>
     </Component>
@@ -344,7 +344,7 @@
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
           <ComponentRef name="btnGroup"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Tripulable"/>
+        <Property name="text" type="java.lang.String" value="Tripulada"/>
         <Property name="actionCommand" type="java.lang.String" value=""/>
       </Properties>
     </Component>

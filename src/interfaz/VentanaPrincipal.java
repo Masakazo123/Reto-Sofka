@@ -175,11 +175,11 @@ public class VentanaPrincipal extends javax.swing.JFrame implements ActionListen
         radioLanzadera.setActionCommand("");
 
         btnGroup.add(radioNoTripulada);
-        radioNoTripulada.setText("No tripulable");
+        radioNoTripulada.setText("No tripulada");
         radioNoTripulada.setActionCommand("");
 
         btnGroup.add(radioTripulada);
-        radioTripulada.setText("Tripulable");
+        radioTripulada.setText("Tripulada");
         radioTripulada.setActionCommand("");
 
         btnGroup.add(radioNinguno);
@@ -353,6 +353,7 @@ public class VentanaPrincipal extends javax.swing.JFrame implements ActionListen
     private void resetFiltrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetFiltrosActionPerformed
         resetear();
         this.txtBuscar.setText("");
+        this.txtArea.setText("");
         actualizar();
     }//GEN-LAST:event_resetFiltrosActionPerformed
 
@@ -442,17 +443,23 @@ public class VentanaPrincipal extends javax.swing.JFrame implements ActionListen
 
     private void menuPrepararLanzamientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuPrepararLanzamientoActionPerformed
         int fila = tabla.getSelectedRow();
+        if(fila !=-1){
         int filaOriginal = tabla.convertRowIndexToModel(fila);
-        
-        TableModel tableModel = tabla.getModel();
-        tableModel.getValueAt(filaOriginal, 1);
-        
-        for(Nave nave : modelo.getListaNaves()){
-            if(nave.getModelo().equals(tableModel.getValueAt(filaOriginal, 1))){
-                JFrame jf=new JFrame();
-                jf.setAlwaysOnTop(true);
-                JOptionPane.showMessageDialog(jf,nave.prepararParaLanzamiento());
+            TableModel tableModel = tabla.getModel();
+            tableModel.getValueAt(filaOriginal, 1);
+
+            for(Nave nave : modelo.getListaNaves()){
+                if(nave.getModelo().equals(tableModel.getValueAt(filaOriginal, 1))){
+                    JFrame jf=new JFrame();
+                    jf.setAlwaysOnTop(true);
+                    JOptionPane.showMessageDialog(jf,nave.prepararParaLanzamiento());
+                }
             }
+            
+        }else{
+            JFrame jf=new JFrame();
+            jf.setAlwaysOnTop(true);
+            JOptionPane.showMessageDialog(jf,"Seleccione una nave de la lista");
         }
     }//GEN-LAST:event_menuPrepararLanzamientoActionPerformed
 
