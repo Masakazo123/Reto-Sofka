@@ -8,11 +8,13 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
 /**
@@ -76,13 +78,19 @@ public class VentanaPrincipal extends javax.swing.JFrame implements ActionListen
         radioNoTripulada = new javax.swing.JRadioButton();
         radioTripulada = new javax.swing.JRadioButton();
         radioNinguno = new javax.swing.JRadioButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabel5 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        txtArea = new javax.swing.JTextArea();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         menuBorrarDatos = new javax.swing.JMenuItem();
         menuResetearDatos = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         agregarLanzadera = new javax.swing.JMenuItem();
-        menuEliminarModificar = new javax.swing.JMenuItem();
+        menuEliminar = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        menuPrepararLanzamiento = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -110,23 +118,21 @@ public class VentanaPrincipal extends javax.swing.JFrame implements ActionListen
                 "Tipo de nave", "Modelo", "País", "Condiciones óptimas"
             }
         ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false
             };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        tabla.setColumnSelectionAllowed(true);
+        tabla.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tabla.getTableHeader().setReorderingAllowed(false);
+        tabla.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                tablaMouseReleased(evt);
+            }
+        });
         jScrollPane2.setViewportView(tabla);
         tabla.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         if (tabla.getColumnModel().getColumnCount() > 0) {
@@ -185,6 +191,13 @@ public class VentanaPrincipal extends javax.swing.JFrame implements ActionListen
             }
         });
 
+        jLabel5.setText("Características nave");
+
+        txtArea.setEditable(false);
+        txtArea.setColumns(20);
+        txtArea.setRows(1);
+        jScrollPane3.setViewportView(txtArea);
+
         jMenu2.setText("Archivo");
 
         menuBorrarDatos.setText("Borrar datos");
@@ -207,7 +220,7 @@ public class VentanaPrincipal extends javax.swing.JFrame implements ActionListen
 
         jMenu1.setText("Nave");
 
-        agregarLanzadera.setText("Añadir nave");
+        agregarLanzadera.setText("Añadir");
         agregarLanzadera.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 agregarLanzaderaActionPerformed(evt);
@@ -215,15 +228,32 @@ public class VentanaPrincipal extends javax.swing.JFrame implements ActionListen
         });
         jMenu1.add(agregarLanzadera);
 
-        menuEliminarModificar.setText("Eliminar/Modificar");
-        menuEliminarModificar.addActionListener(new java.awt.event.ActionListener() {
+        menuEliminar.setText("Eliminar");
+        menuEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuEliminarModificarActionPerformed(evt);
+                menuEliminarActionPerformed(evt);
             }
         });
-        jMenu1.add(menuEliminarModificar);
+        jMenu1.add(menuEliminar);
 
         jMenuBar1.add(jMenu1);
+
+        jMenu3.setText("Acciones");
+        jMenu3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu3ActionPerformed(evt);
+            }
+        });
+
+        menuPrepararLanzamiento.setText("Preparar Lanzamiento");
+        menuPrepararLanzamiento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuPrepararLanzamientoActionPerformed(evt);
+            }
+        });
+        jMenu3.add(menuPrepararLanzamiento);
+
+        jMenuBar1.add(jMenu3);
 
         setJMenuBar(jMenuBar1);
 
@@ -234,30 +264,37 @@ public class VentanaPrincipal extends javax.swing.JFrame implements ActionListen
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(txtBuscar)
-                        .addComponent(resetFiltros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(6, 6, 6)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel2)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtBuscar)
+                                .addComponent(resetFiltros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel1)
                                 .addGroup(layout.createSequentialGroup()
                                     .addGap(6, 6, 6)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(radioEEUU, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(radioRusia, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(radioChina, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(radioLanzadera)
-                                        .addComponent(radioNoTripulada)
-                                        .addComponent(radioTripulada)))))
-                        .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(jLabel3)
+                                        .addComponent(jLabel2)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGap(6, 6, 6)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(radioEEUU, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(radioRusia, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(radioChina, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(radioLanzadera)
+                                                .addComponent(radioNoTripulada)
+                                                .addComponent(radioTripulada)))))
+                                .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(radioNinguno)))
+                        .addGap(41, 41, 41)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 548, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(radioNinguno)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 548, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -265,6 +302,7 @@ public class VentanaPrincipal extends javax.swing.JFrame implements ActionListen
             .addGroup(layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -285,13 +323,19 @@ public class VentanaPrincipal extends javax.swing.JFrame implements ActionListen
                         .addComponent(radioNoTripulada)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(radioTripulada)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(resetFiltros))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addComponent(resetFiltros)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -312,7 +356,7 @@ public class VentanaPrincipal extends javax.swing.JFrame implements ActionListen
         actualizar();
     }//GEN-LAST:event_resetFiltrosActionPerformed
 
-    private void menuEliminarModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuEliminarModificarActionPerformed
+    private void menuEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuEliminarActionPerformed
 
         if(!existeVentanaEliminar){
             EliminarNave ventana = new EliminarNave(modelo,this, tabla.getModel());
@@ -321,7 +365,7 @@ public class VentanaPrincipal extends javax.swing.JFrame implements ActionListen
         }
         
         
-    }//GEN-LAST:event_menuEliminarModificarActionPerformed
+    }//GEN-LAST:event_menuEliminarActionPerformed
 
     private void radioNingunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioNingunoActionPerformed
         actualizar();
@@ -378,6 +422,40 @@ public class VentanaPrincipal extends javax.swing.JFrame implements ActionListen
         }
     }//GEN-LAST:event_menuResetearDatosActionPerformed
 
+    private void tablaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMouseReleased
+        int fila = tabla.getSelectedRow();
+        int filaOriginal = tabla.convertRowIndexToModel(fila);
+        
+        TableModel tableModel = tabla.getModel();
+        tableModel.getValueAt(filaOriginal, 1);
+        for(Nave nave : modelo.getListaNaves()){
+            if(nave.getModelo().equals(tableModel.getValueAt(filaOriginal, 1))){
+                txtArea.setText(nave.toString());
+            }
+        }
+        
+    }//GEN-LAST:event_tablaMouseReleased
+
+    private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed
+ 
+    }//GEN-LAST:event_jMenu3ActionPerformed
+
+    private void menuPrepararLanzamientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuPrepararLanzamientoActionPerformed
+        int fila = tabla.getSelectedRow();
+        int filaOriginal = tabla.convertRowIndexToModel(fila);
+        
+        TableModel tableModel = tabla.getModel();
+        tableModel.getValueAt(filaOriginal, 1);
+        
+        for(Nave nave : modelo.getListaNaves()){
+            if(nave.getModelo().equals(tableModel.getValueAt(filaOriginal, 1))){
+                JFrame jf=new JFrame();
+                jf.setAlwaysOnTop(true);
+                JOptionPane.showMessageDialog(jf,nave.prepararParaLanzamiento());
+            }
+        }
+    }//GEN-LAST:event_menuPrepararLanzamientoActionPerformed
+
 
     
     /**
@@ -391,14 +469,19 @@ public class VentanaPrincipal extends javax.swing.JFrame implements ActionListen
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JMenuItem menuBorrarDatos;
-    private javax.swing.JMenuItem menuEliminarModificar;
+    private javax.swing.JMenuItem menuEliminar;
+    private javax.swing.JMenuItem menuPrepararLanzamiento;
     private javax.swing.JMenuItem menuResetearDatos;
     private javax.swing.JRadioButton radioChina;
     private javax.swing.JRadioButton radioEEUU;
@@ -409,6 +492,7 @@ public class VentanaPrincipal extends javax.swing.JFrame implements ActionListen
     private javax.swing.JRadioButton radioTripulada;
     private javax.swing.JButton resetFiltros;
     private javax.swing.JTable tabla;
+    private javax.swing.JTextArea txtArea;
     private javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
 

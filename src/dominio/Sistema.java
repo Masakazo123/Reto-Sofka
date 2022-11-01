@@ -34,22 +34,22 @@ public class Sistema implements Serializable{
         Lanzadera n3 = new Lanzadera("China", "Larga Marcha 3B", true, 2000, 2800);
         agregarNave(n3);
         
-        Tripulada n4 = new Tripulada(3, "Rusia", "Salyut", false);
+        Tripulada n4 = new Tripulada(3, 20, "Rusia", "Salyut", false);
         agregarNave(n4);
         
-        Tripulada n5 = new Tripulada(3, "EEUU", "Skylab", false);
+        Tripulada n5 = new Tripulada(3, 77, "EEUU", "Skylab", false);
         agregarNave(n5);
         
-        Tripulada n6 = new Tripulada(7, "EEUU", "EEI", true);
+        Tripulada n6 = new Tripulada(7, 420, "EEUU", "EEI", true);
         agregarNave(n6);
         
-        NoTripulada n7 = new NoTripulada("Rusia", "Sputnik", false);
+        NoTripulada n7 = new NoTripulada("EEUU", "Mariner X", false, 66, "Mercurio");
         agregarNave(n7);
     
-        NoTripulada n8 = new NoTripulada("Rusia", "Luna IX", true);
+        NoTripulada n8 = new NoTripulada("EEUU", "Mariner IV", true, 22, "Marte");
         agregarNave(n8);
     
-        NoTripulada n9 = new NoTripulada("EEUU", "Pionero XI", true);
+        NoTripulada n9 = new NoTripulada("EEUU", "Pionero XI", true, 26, "Estrella Lambda");
         agregarNave(n9);
     }
 }

@@ -7,6 +7,8 @@ package interfaz;
 import dominio.*;
 import java.awt.Color;
 import javax.swing.BorderFactory;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.border.Border;
 
 /**
@@ -22,6 +24,9 @@ public class AnadirNave extends javax.swing.JFrame {
     private int capacidadMaxima;
     private int empuje;
     private int capTripulacion;
+    private String cuerpoCeleste;
+    private int empuje1;
+    private int peso;
     
     /**
      * Creates new form AnadirLanzadera
@@ -86,6 +91,11 @@ public class AnadirNave extends javax.swing.JFrame {
         btnBorrar1 = new javax.swing.JButton();
         btnAnadir1 = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        spinnerFuerzaEmpuje1 = new javax.swing.JSpinner();
+        jLabel22 = new javax.swing.JLabel();
+        txtCuerpoCeleste = new javax.swing.JTextField();
         panelTripulada = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         radioRusia2 = new javax.swing.JRadioButton();
@@ -103,6 +113,9 @@ public class AnadirNave extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         spinnerCapTripulacion = new javax.swing.JSpinner();
         jLabel18 = new javax.swing.JLabel();
+        spinnerPeso = new javax.swing.JSpinner();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
 
         jRadioButton3.setText("jRadioButton1");
 
@@ -375,6 +388,20 @@ public class AnadirNave extends javax.swing.JFrame {
 
         jLabel15.setText("Nave no tripulada");
 
+        jLabel19.setText("Cuerpo celeste a estudiar");
+
+        jLabel21.setText("Fuerza empuje");
+
+        spinnerFuerzaEmpuje1.setModel(new javax.swing.SpinnerNumberModel(250, 0, null, 10));
+
+        jLabel22.setText("kg");
+
+        txtCuerpoCeleste.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCuerpoCelesteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelNoTripuladaLayout = new javax.swing.GroupLayout(panelNoTripulada);
         panelNoTripulada.setLayout(panelNoTripuladaLayout);
         panelNoTripuladaLayout.setHorizontalGroup(
@@ -388,22 +415,34 @@ public class AnadirNave extends javax.swing.JFrame {
                         .addComponent(btnAnadir1))
                     .addGroup(panelNoTripuladaLayout.createSequentialGroup()
                         .addGroup(panelNoTripuladaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(panelNoTripuladaLayout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addGroup(panelNoTripuladaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(panelNoTripuladaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(radioEEUU1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(radioChina1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(radioRusia1)
-                                    .addGroup(panelNoTripuladaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(radioNo1, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(radioSi1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addComponent(txtModelo1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(labelCampoObligatorio1)
-                            .addComponent(jLabel15))
+                            .addComponent(jLabel15)
+                            .addGroup(panelNoTripuladaLayout.createSequentialGroup()
+                                .addGroup(panelNoTripuladaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(panelNoTripuladaLayout.createSequentialGroup()
+                                        .addGap(6, 6, 6)
+                                        .addGroup(panelNoTripuladaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(panelNoTripuladaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(radioEEUU1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(radioChina1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(radioRusia1)
+                                            .addGroup(panelNoTripuladaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(radioNo1, javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(radioSi1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGap(18, 18, 18)
+                                .addGroup(panelNoTripuladaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(panelNoTripuladaLayout.createSequentialGroup()
+                                        .addComponent(spinnerFuerzaEmpuje1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel22))
+                                    .addGroup(panelNoTripuladaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(txtCuerpoCeleste, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -413,26 +452,38 @@ public class AnadirNave extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel15)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel8)
-                .addGap(6, 6, 6)
-                .addComponent(radioRusia1)
-                .addGap(4, 4, 4)
-                .addComponent(radioEEUU1)
-                .addGap(6, 6, 6)
-                .addComponent(radioChina1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel9)
-                .addGap(5, 5, 5)
-                .addComponent(radioNo1)
-                .addGap(2, 2, 2)
-                .addComponent(radioSi1)
+                .addGroup(panelNoTripuladaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelNoTripuladaLayout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addGap(6, 6, 6)
+                        .addComponent(radioRusia1)
+                        .addGap(4, 4, 4)
+                        .addComponent(radioEEUU1)
+                        .addGap(6, 6, 6)
+                        .addComponent(radioChina1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel9)
+                        .addGap(5, 5, 5)
+                        .addComponent(radioNo1)
+                        .addGap(2, 2, 2)
+                        .addComponent(radioSi1))
+                    .addGroup(panelNoTripuladaLayout.createSequentialGroup()
+                        .addComponent(jLabel19)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtCuerpoCeleste, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(62, 62, 62)
+                        .addComponent(jLabel21)
+                        .addGap(5, 5, 5)
+                        .addGroup(panelNoTripuladaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(spinnerFuerzaEmpuje1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel22))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel10)
                 .addGap(6, 6, 6)
                 .addComponent(txtModelo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(6, 6, 6)
                 .addComponent(labelCampoObligatorio1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(panelNoTripuladaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBorrar1)
                     .addComponent(btnAnadir1))
@@ -522,6 +573,12 @@ public class AnadirNave extends javax.swing.JFrame {
 
         jLabel18.setText("Personas");
 
+        spinnerPeso.setModel(new javax.swing.SpinnerNumberModel(100, 0, null, 10));
+
+        jLabel23.setText("Peso");
+
+        jLabel24.setText("Toneladas");
+
         javax.swing.GroupLayout panelTripuladaLayout = new javax.swing.GroupLayout(panelTripulada);
         panelTripulada.setLayout(panelTripuladaLayout);
         panelTripuladaLayout.setHorizontalGroup(
@@ -553,11 +610,16 @@ public class AnadirNave extends javax.swing.JFrame {
                             .addComponent(jLabel16))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(panelTripuladaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTripuladaLayout.createSequentialGroup()
                                 .addComponent(spinnerCapTripulacion)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel18)))))
+                                .addComponent(jLabel18))
+                            .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(panelTripuladaLayout.createSequentialGroup()
+                                .addComponent(spinnerPeso, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel24))
+                            .addComponent(jLabel17))))
                 .addContainerGap())
         );
         panelTripuladaLayout.setVerticalGroup(
@@ -579,10 +641,18 @@ public class AnadirNave extends javax.swing.JFrame {
                 .addGap(6, 6, 6)
                 .addComponent(radioChina2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel12)
-                .addGap(5, 5, 5)
-                .addComponent(radioNo2)
-                .addGap(2, 2, 2)
+                .addGroup(panelTripuladaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelTripuladaLayout.createSequentialGroup()
+                        .addComponent(jLabel12)
+                        .addGap(5, 5, 5)
+                        .addComponent(radioNo2))
+                    .addGroup(panelTripuladaLayout.createSequentialGroup()
+                        .addComponent(jLabel23)
+                        .addGap(5, 5, 5)
+                        .addGroup(panelTripuladaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(spinnerPeso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel24))))
+                .addGap(0, 0, 0)
                 .addComponent(radioSi2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel13)
@@ -590,7 +660,7 @@ public class AnadirNave extends javax.swing.JFrame {
                 .addComponent(txtModelo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(6, 6, 6)
                 .addComponent(labelCampoObligatorio2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(panelTripuladaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBorrar2)
                     .addComponent(btnAnadir2))
@@ -644,9 +714,25 @@ public class AnadirNave extends javax.swing.JFrame {
             if(radioNo.isSelected()){
                 condicionesOptimas = false;
             }
-
-            Lanzadera agregar = new Lanzadera(pais, modeloNave, condicionesOptimas, capacidadMaxima, empuje);
+            
+            boolean esta = false;
+            for(int i=0; i<modelo.getListaNaves().size(); i++){
+                Nave nave = modelo.getListaNaves().get(i);
+                
+                if(nave.getModelo().equals(this.modeloNave)){
+                    esta = true;
+                }
+            }
+            
+            if(!esta){
+                Lanzadera agregar = new Lanzadera(pais, modeloNave, condicionesOptimas, capacidadMaxima, empuje);
             modelo.agregarNave(agregar);
+            }else{
+                JFrame jf=new JFrame();
+                jf.setAlwaysOnTop(true);
+                JOptionPane.showMessageDialog(jf,"Modelo repetido");
+                
+            }
             ventana.actualizar();
             resetear();
         }
@@ -659,26 +745,6 @@ public class AnadirNave extends javax.swing.JFrame {
     private void txtModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtModeloActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtModeloActionPerformed
-
-    private void radioSiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioSiActionPerformed
-        condicionesOptimas = true;
-    }//GEN-LAST:event_radioSiActionPerformed
-
-    private void radioNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioNoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_radioNoActionPerformed
-
-    private void radioChinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioChinaActionPerformed
-        pais = "China";
-    }//GEN-LAST:event_radioChinaActionPerformed
-
-    private void radioEEUUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioEEUUActionPerformed
-        pais = "EEUU";
-    }//GEN-LAST:event_radioEEUUActionPerformed
-
-    private void radioRusiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioRusiaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_radioRusiaActionPerformed
 
     private void radioRusia1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioRusia1ActionPerformed
         // TODO add your handling code here:
@@ -713,8 +779,13 @@ public class AnadirNave extends javax.swing.JFrame {
             this.labelCampoObligatorio1.setVisible(true);
         }else{
 
-            modeloNave = txtModelo1.getText();
-
+            this.modeloNave = txtModelo1.getText();
+            this.cuerpoCeleste = txtCuerpoCeleste.getText();
+            this.empuje1 = (int) spinnerFuerzaEmpuje1.getValue();
+            
+            if(this.cuerpoCeleste.length() == 0){
+                this.cuerpoCeleste = "Sin especificar";
+            }
             if(radioRusia1.isSelected()){
                 pais = "Rusia";
             }
@@ -722,9 +793,26 @@ public class AnadirNave extends javax.swing.JFrame {
             if(radioNo1.isSelected()){
                 condicionesOptimas = false;
             }
-
-            NoTripulada agregar = new NoTripulada(pais, modeloNave, condicionesOptimas);
-            modelo.agregarNave(agregar);
+            
+            boolean esta = false;
+            for(int i=0; i<modelo.getListaNaves().size(); i++){
+                Nave nave = modelo.getListaNaves().get(i);
+                
+                if(nave.getModelo().equals(this.modeloNave)){
+                    esta = true;
+                }
+            }
+            
+            if(!esta){
+                NoTripulada agregar = new NoTripulada(pais, modeloNave, condicionesOptimas, empuje1, cuerpoCeleste);
+                modelo.agregarNave(agregar);
+            }else{
+                JFrame jf=new JFrame();
+                jf.setAlwaysOnTop(true);
+                JOptionPane.showMessageDialog(jf,"Modelo repetido");
+                
+            }
+            
             ventana.actualizar();
             resetear();
         }
@@ -755,7 +843,7 @@ public class AnadirNave extends javax.swing.JFrame {
     }//GEN-LAST:event_txtModelo2ActionPerformed
 
     private void btnBorrar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrar2ActionPerformed
-        // TODO add your handling code here:
+        resetear();
     }//GEN-LAST:event_btnBorrar2ActionPerformed
 
     private void btnAnadir2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnadir2ActionPerformed
@@ -765,6 +853,8 @@ public class AnadirNave extends javax.swing.JFrame {
 
             this.modeloNave = txtModelo2.getText();
             this.capTripulacion = (int) spinnerCapTripulacion.getValue();
+            this.peso = (int) spinnerPeso.getValue();
+            
 
             if(radioRusia2.isSelected()){
                 pais = "Rusia";
@@ -773,9 +863,25 @@ public class AnadirNave extends javax.swing.JFrame {
             if(radioNo2.isSelected()){
                 condicionesOptimas = false;
             }
-
-            Tripulada agregar = new Tripulada(capTripulacion, pais, modeloNave, condicionesOptimas);
+            
+            boolean esta = false;
+            for(int i=0; i<modelo.getListaNaves().size(); i++){
+                Nave nave = modelo.getListaNaves().get(i);
+                
+                if(nave.getModelo().equals(this.modeloNave)){
+                    esta = true;
+                }
+            }
+            
+            if(!esta){
+                Tripulada agregar = new Tripulada(peso, capTripulacion, pais, modeloNave, condicionesOptimas);
             modelo.agregarNave(agregar);
+            }else{
+                JFrame jf=new JFrame();
+                jf.setAlwaysOnTop(true);
+                JOptionPane.showMessageDialog(jf,"Modelo repetido");
+                
+            }
             ventana.actualizar();
             resetear();
         }
@@ -784,6 +890,30 @@ public class AnadirNave extends javax.swing.JFrame {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         ventana.setExisteVentanaAgregar(false);
     }//GEN-LAST:event_formWindowClosing
+
+    private void txtCuerpoCelesteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCuerpoCelesteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCuerpoCelesteActionPerformed
+
+    private void radioSiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioSiActionPerformed
+        condicionesOptimas = true;
+    }//GEN-LAST:event_radioSiActionPerformed
+
+    private void radioNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioNoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_radioNoActionPerformed
+
+    private void radioChinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioChinaActionPerformed
+        pais = "China";
+    }//GEN-LAST:event_radioChinaActionPerformed
+
+    private void radioEEUUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioEEUUActionPerformed
+        pais = "EEUU";
+    }//GEN-LAST:event_radioEEUUActionPerformed
+
+    private void radioRusiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioRusiaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_radioRusiaActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAnadir;
@@ -808,7 +938,12 @@ public class AnadirNave extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -842,7 +977,10 @@ public class AnadirNave extends javax.swing.JFrame {
     private javax.swing.JSpinner spinnerCapTransporte;
     private javax.swing.JSpinner spinnerCapTripulacion;
     private javax.swing.JSpinner spinnerFuerzaEmpuje;
+    private javax.swing.JSpinner spinnerFuerzaEmpuje1;
+    private javax.swing.JSpinner spinnerPeso;
     private javax.swing.JLabel txtCampoObligatorio;
+    private javax.swing.JTextField txtCuerpoCeleste;
     private javax.swing.JTextField txtModelo;
     private javax.swing.JTextField txtModelo1;
     private javax.swing.JTextField txtModelo2;
@@ -860,12 +998,16 @@ public class AnadirNave extends javax.swing.JFrame {
         this.radioRusia1.setSelected(true);
         this.radioNo1.setSelected(true);
         this.labelCampoObligatorio1.setVisible(false);
-        
+        this.txtCuerpoCeleste.setText("");
+        this.spinnerFuerzaEmpuje1.setValue(250);
+                
         this.txtModelo2.setText(null);
         this.radioRusia2.setSelected(true);
         this.radioNo2.setSelected(true);
         this.labelCampoObligatorio2.setVisible(false);
         this.spinnerCapTripulacion.setValue(0);
+        spinnerPeso.setValue(100);
+        
         
     }
 }

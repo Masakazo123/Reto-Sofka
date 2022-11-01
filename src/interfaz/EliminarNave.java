@@ -77,6 +77,8 @@ public class EliminarNave extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tabla.setColumnSelectionAllowed(true);
+        tabla.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(tabla);
         if (tabla.getColumnModel().getColumnCount() > 0) {
             tabla.getColumnModel().getColumn(0).setResizable(false);
@@ -115,6 +117,7 @@ public class EliminarNave extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        ventana.setExisteVentanaEliminar(false);
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 

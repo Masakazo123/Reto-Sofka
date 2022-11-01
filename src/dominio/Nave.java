@@ -48,7 +48,7 @@ public abstract class Nave implements Serializable{
 
     @Override
     public String toString() {
-        return "Nave{" + "modelo=" + modelo + ", pais=" + pais + ", condicionesOptimas=" + condicionesOptimas + '}';
+        return "Modelo: "+modelo;
     }
     
     

@@ -42,7 +42,7 @@ public class Lanzadera extends Nave implements Serializable{
 
     @Override
     public String toString() {
-        return super.toString() + "Lanzadera{" + "capacidadMaxima=" + capacidadMaxima + " litros}";
+        return "Nave: lanzadera - "+super.toString()+" - Empuje: "+this.empuje+"tons - Capacidad transporte: "+this.capacidadMaxima+"tons";
     }
 
     

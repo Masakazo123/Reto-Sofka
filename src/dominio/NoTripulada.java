@@ -5,9 +5,20 @@ import java.io.Serializable;
 public class NoTripulada extends Nave implements Serializable{
     
     private int empuje;
+    private String cuerpoEstudiar;
     
-    public NoTripulada(String pais, String modelo, boolean condicionesOptimas) {
+    public NoTripulada(String pais, String modelo, boolean condicionesOptimas, int empuje, String cuerpoEstudiar) {
         super(pais,modelo,condicionesOptimas);
+        this.empuje = empuje;
+        this.cuerpoEstudiar = cuerpoEstudiar;
+    }
+
+    public String getCuerpoEstudiar() {
+        return cuerpoEstudiar;
+    }
+
+    public void setCuerpoEstudiar(String cuerpoEstudiar) {
+        this.cuerpoEstudiar = cuerpoEstudiar;
     }
 
     public int getEmpuje() {
@@ -20,7 +31,7 @@ public class NoTripulada extends Nave implements Serializable{
 
     @Override
     public String toString() {
-        return "Nave no tripulada - "+super.toString();
+        return "Nave no tripulada - "+super.toString()+" - Empuje: "+this.empuje+"kg - Cuerpo a estudiar: "+this.cuerpoEstudiar;
     }
     
     

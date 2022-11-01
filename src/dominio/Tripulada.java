@@ -5,10 +5,20 @@ import java.io.Serializable;
 public class Tripulada extends Nave implements Serializable{
 
     private int capacidadPersonas;
+    private int peso;
     
-    public Tripulada(int unaCapacidad, String pais, String modelo, boolean condicionesOptimas) {
+    public Tripulada(int unaCapacidad, int peso, String pais, String modelo, boolean condicionesOptimas) {
         super(pais,modelo,condicionesOptimas);
         this.capacidadPersonas = unaCapacidad;
+        this.peso = peso;
+    }
+
+    public int getPeso() {
+        return peso;
+    }
+
+    public void setPeso(int peso) {
+        this.peso = peso;
     }
 
     public int getCapacidadPersonas() {
@@ -21,7 +31,7 @@ public class Tripulada extends Nave implements Serializable{
 
     @Override
     public String toString() {
-        return super.toString() + "Tripulada{" + "capacidadPersonas=" + capacidadPersonas + '}';
+        return "Nave: tripulada - "+super.toString()+" - Capacidad tripulacion: "+this.capacidadPersonas+" personas - Peso: "+this.peso+"tons";
     }
     
     
